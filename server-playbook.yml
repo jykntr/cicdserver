@@ -6,4 +6,6 @@
     - server
     - angstwad.docker_ubuntu
     - proxy
+    - drone
+    - gogs
 

@@ -1,0 +1,16 @@
+---
+- name: Start gogs
+  docker:
+    name: gogs
+    image: gogs/gogs
+    ports:
+      - "10022:22"
+      - "3000:3000"
+    volumes:
+      - "/var/gogs:/data"
+    env:
+      VIRTUAL_HOST: gogs.knttr.net
+      VIRTUAL_PORT: 3000
+      LETSENCRYPT_HOST: gogs.knttr.net
+      LETSENCRYPT_EMAIL: jykntr@gmail.com
+

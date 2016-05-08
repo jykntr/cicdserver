@@ -1,0 +1,19 @@
+---
+- name: Start drone
+  docker:
+    name: drone
+    image: "drone/drone:0.4"
+    restart_policy: always
+    ports: "8000:8000"
+    volumes:
+      - "/var/lib/drone:/var/lib/drone"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    env:
+      VIRTUAL_HOST: drone.knttr.net
+      LETSENCRYPT_HOST: drone.knttr.net
+      LETSENCRYPT_EMAIL: jykntr@gmail.com
+      DATABASE_DRIVER: sqlite3
+      DATABASE_CONFIG: var/lib/drone/drone.sqlite
+      REMOTE_DRIVER: gogs
+      REMOTE_CONFIG: "https://gogs.knttr.net?open=false"
+
