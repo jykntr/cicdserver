@@ -1,0 +1,9 @@
+- name: Configure CICD Server
+  hosts: servers
+  become: yes
+  become_method: sudo
+  roles:
+    - server
+    - angstwad.docker_ubuntu
+    - proxy
+

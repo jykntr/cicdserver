@@ -1,0 +1,21 @@
+---
+- name: Start nginx-proxy
+  docker:
+    name: nginx-proxy
+    image: jwilder/nginx-proxy
+    volumes:
+      - "/etc/nginx/certs:/etc/nginx/certs:ro"
+      - "/etc/nginx/vhost.d"
+      - "/usr/share/nginx/html"
+      - "/var/run/docker.sock:/tmp/docker.sock:ro"
+
+- name: Start letsencrypt-nginx-proxy-companion
+  docker:
+    name: proxy-companion
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    volumes:
+      - "/etc/nginx/certs:/etc/nginx/certs:rw"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    volumes_from:
+      - nginx-proxy
+
